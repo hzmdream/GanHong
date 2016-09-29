@@ -9,6 +9,12 @@
   <packaging>war</packaging>
   <!-- 添加依赖 -->
 	<dependencies>
+		<!-- 添加ui -->
+		<dependency>
+			<groupId>com.ganhong</groupId>
+			<artifactId>ganhong-manager-ui</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>com.ganhong</groupId>
 			<artifactId>ganhong-manager-service</artifactId>
