@@ -22,5 +22,21 @@
   	<module>ganhong-manager-dao</module>
   	<module>ganhong-manager-service</module>
   	<module>ganhong-manager-web</module>
+  	<module>ganhong-manager-test</module>
+  	<module>ganhong-manager-ui</module>
   </modules>
+  <!-- 添加tomcat插件 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8080</port>
+					<path>/</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
 </project>

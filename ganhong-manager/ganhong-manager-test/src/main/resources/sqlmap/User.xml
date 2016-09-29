@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 -->
+<mapper namespace="test">
+	<!-- 通过select执行数据库查询，id标识映射文件中的sql，将sql语句封装到mappedStatement对象中，所以将id称为statement的id，parameterType:指定输入参数的类型，这里指定int型 -->
+	<!-- resultType : 指定sql输出结果所映射的java对象类型
+			select指定resultType表示将单条记录映射成的java对象-->
+	<select id="findUserById" parameterType="int" resultType="mybatis.helloworld.User">
+		<!-- #{}标识一个占位符 -->
+		<!-- #{id}其中的id表示接入输入的参数，参数名称就是id，如果输入参数是简单类型，#{}中的参数名可以任意，可以是value或其他 -->
+		SELECT * FROM USER WHERE id=#{value}
+	</select>
+	
+	<!-- 模糊查询 -->
+	<select id="findUserByName" parameterType="java.lang.String" resultType="mybatis.helloworld.User">
+		<!-- SELECT * FROM USER WHERE username LIKE #{value} -->
+		<!-- ${}:表示sql串，将接受到参数的内容不加任何修饰的拼接在sql中
+				注意：${}会引起sql注入的风险
+					 ${}拼接输入参数的内容，如果传入的参数类型是简单类型，${}中只能使用value 
+		 -->
+		SELECT * FROM USER WHERE username LIKE '%${value}%'
+	</select>
+	<!-- 添加用户 不带主键返回-->
+	<!-- paramerterType:指定输入参数类型是pojo(包括用户信息) 
+		 #{}中指定pojo的属性名，接收到pojo对象的属性值，mybatis通过OGNL获取对象的属性值
+	-->
+	<insert id="insertUser" parameterType="mybatis.helloworld.User">
+		INSERT INTO USER(ID,USERNAME,BIRTHDAY,SEX,ADDRESS) VALUE(#{id},#{username},#{birthday},#{sex},#{address})
+	</insert>
+	
+	<!-- 添加用户 2 mysql自增主键返回-->
+	<insert id="insertUserAndGetId" parameterType="mybatis.helloworld.User">
+	<!-- mysql自增长主键自增长原理
+			在执行insert提交之前自动生成一个自增主键，通过mysql函数获取到刚插入记录的自增长主键LAST_INSERT_ID
+	 -->
+		<selectKey resultType="int" keyProperty="id" order="AFTER" >
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO USER(USERNAME,BIRTHDAY,SEX,ADDRESS) VALUE(#{username},#{birthday},#{sex},#{address})
+	</insert>
+	
+	<!-- 添加用户 3 mysql非自增逐渐返回-->
+	<insert id="insertUserAndGetId2" parameterType="mybatis.helloworld.User">
+	<!-- 需要将数据库主键的类型修改为   字符串类型    长度为35位 
+			原理：先根据mysql中的uuid()查询出uuid值，再将uuid设置到sql的id中
+	
+	-->
+		<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+			SELECT UUID()
+		</selectKey>
+		INSERT INTO USER(ID,USERNAME,BIRTHDAY,SEX,ADDRESS) VALUE(#{id},#{username},#{birthday},#{sex},#{address})
+	</insert>
+	
+	<!-- 添加用户4 oracle 序列返回主键 未测试-->
+	<insert id="insertUserAndGetId3" parameterType="mybatis.helloworld.User">
+	<!-- 需要将数据库主键的类型修改为   字符串类型    长度为35位 
+			原理：先根据mysql中的uuid()查询出uuid值，再将uuid设置到sql的id中
+	
+	-->
+		<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+			SELECT 序列名.nextVal()
+		</selectKey>
+		INSERT INTO USER(ID,USERNAME,BIRTHDAY,SEX,ADDRESS) VALUE(#{id},#{username},#{birthday},#{sex},#{address})
+	</insert>
+	
+	<!-- 根据用户id 删除用户 -->
+	<delete id="deleteUser" parameterType="int">
+		delete from user where id=#{id}
+	</delete>
+	
+	<!-- 根据用户id 更新用户 -->
+	<update id="updateUser" parameterType="mybatis.helloworld.User">
+		UPDATE USER SET USERNAME=#{username},BIRTHDAY=#{birthday},SEX=#{sex},ADDRESS=#{address} WHERE ID=#{id}
+	</update>
+</mapper>
