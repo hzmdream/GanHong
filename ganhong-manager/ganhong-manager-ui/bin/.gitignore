@@ -1,2 +1,9 @@
-/target/
-/bin/
+/.settings
+/.project
+/.classpath
+/target
+.idea
+.editorconfig
+/email/*.log
+/.gitignore
+/pom.xml
