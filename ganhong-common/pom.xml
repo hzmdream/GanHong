@@ -5,9 +5,7 @@
     <artifactId>ganhong-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.ganhong</groupId>
   <artifactId>ganhong-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <!-- 添加依赖 -->
 	<dependencies>
 		<!-- 时间操作组件 -->

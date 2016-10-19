@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>ganhong-manager-pojo</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.persistence</groupId>
+        <artifactId>persistence-api</artifactId>
+        <version>1.0</version>
+  	</dependency>
+  </dependencies>
 </project>

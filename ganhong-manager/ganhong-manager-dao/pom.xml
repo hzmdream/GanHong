@@ -30,15 +30,22 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 		</dependency>
-		<!-- MySql -->
+		<!-- 通用mapper -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.github.abel533</groupId>
+   			<artifactId>mapper</artifactId>
+   			<exclusions>
+   				<exclusion>
+		          <groupId>javax.persistence</groupId>
+		          <artifactId>persistence-api</artifactId>
+		        </exclusion>
+   			</exclusions>
 		</dependency>
-		<!-- 连接池 -->
+		<!-- JacksonJson处理工具包 -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 	</dependencies>
 
