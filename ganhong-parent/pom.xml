@@ -102,7 +102,7 @@
 			<dependency>
 				<groupId>com.github.abel533</groupId>
     			<artifactId>mapper</artifactId>
-    			<version>${mybatis.mapper.version}}</version>
+    			<version>${mybatis.mapper.version}</version>
 			</dependency>
 			<!-- 分页助手 -->
 			<dependency>
