@@ -2,28 +2,30 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<display-name>ganhong-manager</display-name>
 	
+	
+	
+	<!--初始化spring容器 Spring的ApplicationContext 载入 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	<!-- 加载指定路径下的spring配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/applicationContext*.xml</param-value>
 	</context-param>
 	
-	<!-- Spring的ApplicationContext 载入 -->
-	<listener>
-		<listener-class>org.springframework.web.ContextLoaderListener</listener-class>
-	</listener>
 	
-	<!-- 编码过滤器，以UTF8编码 -->
+	<!-- 解决post乱码 编码过滤器，以UTF8编码 -->
 	<filter>
-		<filter-name>encodingFilter</filter-name>
+		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
-			<param-name>encoding</param-name>
+			<param-name>CharacterEncodingFilter</param-name>
 			<param-value>UTF8</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
+		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
@@ -33,8 +35,9 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/ganhong-manager-servlet.xml</param-value>
+			<param-value>classpath:spring/springmvc.xml</param-value>
 		</init-param>
+		<!-- 启动tomcat时就初始化该Servlet -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -43,7 +46,7 @@
 			可用：*.xxx	/	/xxx/*
 			不可用：/*(filter可以使用，但是servlet不可以使用)
 		 -->
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	

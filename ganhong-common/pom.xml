@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>ganhong-common</artifactId>
+  <packaging>jar</packaging>
   <!-- 添加依赖 -->
 	<dependencies>
 		<!-- 时间操作组件 -->

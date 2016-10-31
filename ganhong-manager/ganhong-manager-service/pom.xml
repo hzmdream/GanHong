@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>ganhong-manager-service</artifactId>
+  <packaging>jar</packaging>
   <dependencies>
 		<dependency>
 			<groupId>com.ganhong</groupId>
@@ -44,6 +45,12 @@
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
+		</dependency>
+		
+		<!-- 通用mapper -->
+		<dependency>
+				<groupId>com.github.abel533</groupId>
+    			<artifactId>mapper</artifactId>
 		</dependency>
 	</dependencies>
   

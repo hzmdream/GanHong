@@ -30,7 +30,6 @@
   	<module>ganhong-manager-dao</module>
   	<module>ganhong-manager-service</module>
   	<module>ganhong-manager-web</module>
-  	<module>ganhong-manager-test</module>
   	<module>ganhong-manager-ui</module>
   </modules>
   <!-- 添加tomcat插件 -->
@@ -41,6 +40,11 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
 					<port>8080</port>
+					<!-- 
+						http://{ip}:{port}/{path}
+						如果写了path并且值为/，那么不需要写项目名
+						如果不写path，需要再path的位置填写项目名
+					 -->
 					<path>/</path>
 				</configuration>
 			</plugin>
