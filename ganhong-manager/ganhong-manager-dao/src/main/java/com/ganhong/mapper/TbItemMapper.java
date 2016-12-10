@@ -2,10 +2,13 @@ package com.ganhong.mapper;
 
 import com.ganhong.pojo.TbItem;
 import com.ganhong.pojo.TbItemExample;
+import com.github.abel533.mapper.Mapper;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-public interface TbItemMapper {
+public interface TbItemMapper extends Mapper<TbItem>{
     int countByExample(TbItemExample example);
 
     int deleteByExample(TbItemExample example);

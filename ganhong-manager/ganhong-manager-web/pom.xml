@@ -40,6 +40,12 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
+		<!-- FastDFS图片服务器官方提供的jar -->
+		<dependency>
+			<groupId>fastdfs_client</groupId>
+			<artifactId>fastdfs_client</artifactId>
+			<version>1.25</version>
+		</dependency>
 		<!-- MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
